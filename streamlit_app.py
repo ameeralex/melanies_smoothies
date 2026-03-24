@@ -53,11 +53,12 @@ if(ingredients_list):
         st.success('Your smoothie is ordered',icon= "✅")
 
 import requests  
+import pandas as pd
 
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 
 data = smoothiefroot_response.json()
 
-st.write(data)
+df_api = pd.json_normalize(data)
 
-sf_df = st.dataframe(smoothiefroot_response.json(), use_container_width=true)
+st.dataframe(df_api, use_container_width=True)
